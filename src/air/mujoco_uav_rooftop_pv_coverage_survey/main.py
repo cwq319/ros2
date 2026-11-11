@@ -13,6 +13,7 @@ from typing import Any
 import numpy as np
 import yaml
 
+
 from rooftop_pv.rendering import render_rgb, save_rgb
 from rooftop_pv.route import RouteConfig, generate_lawnmower_route, route_length, save_route
 from rooftop_pv.scene import SCENARIOS, load_model, set_drone_pose
@@ -93,6 +94,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG, help="YAML configuration / YAML 配置")
     parser.add_argument("--output", type=Path, default=MODULE_ROOT / "artifacts" / "scene", help="output directory / 输出目录")
     parser.add_argument("--scenario", choices=SCENARIOS, help="override scenario / 覆盖场景名称")
+
     return parser
 
 
@@ -102,7 +104,7 @@ def main(argv: list[str] | None = None) -> int:
         config = read_config(args.config.resolve())
         if args.scenario:
             config["scenario"] = args.scenario
-        summary = run_scene(config, args.output.resolve())
+
     except (KeyError, TypeError, ValueError, OSError, RuntimeError) as exc:
         print(f"error / 错误: {exc}", file=sys.stderr)
         return 2

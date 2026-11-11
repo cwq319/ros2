@@ -8,7 +8,7 @@
 | --- | --- |
 | `sparse` | 6 组稀疏光伏板 |
 | `dense` | 16 组密集光伏板 |
-| `occluded` | 14 组光伏板、天窗与两台空调机组 |
+
 
 所有场景仅使用 MJCF 基础几何体，不依赖外部网格、纹理或大型地图。场景源文件位于 `assets/mjcf/`，可由 `tools/generate_scenes.py` 确定性重建。
 
@@ -32,13 +32,14 @@ python3 -m venv .venv
 
 默认输出目录为 `artifacts/scene/`，其中包含 `route.json`、`scene_rgb.png` 与 `summary.json`。可通过 `--config` 和 `--output` 修改配置文件及输出目录。
 
+
 ## 测试
 
 ```powershell
 & .\.venv\Scripts\python.exe -m pytest .\src\air\mujoco_uav_rooftop_pv_coverage_survey\tests -q
 ```
 
-测试覆盖航线边界、条带覆盖、参数校验、三场景差异、四旋翼执行器与下视相机存在性。
+
 
 ## 接口边界
 
