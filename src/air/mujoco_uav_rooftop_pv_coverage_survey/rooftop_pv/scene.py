@@ -8,7 +8,6 @@ from typing import Any
 
 SCENARIOS = ("sparse", "dense", "occluded")
 MODULE_ROOT = Path(__file__).resolve().parent.parent
-SCENE_ROOT = MODULE_ROOT / "assets" / "mjcf"
 
 
 def scenario_path(name: str) -> Path:
@@ -16,7 +15,7 @@ def scenario_path(name: str) -> Path:
     if name not in SCENARIOS:
         choices = ", ".join(SCENARIOS)
         raise ValueError(f"unknown scenario {name!r}; choose one of {choices} / 未知场景")
-    path = SCENE_ROOT / f"rooftop_{name}.xml"
+
     if not path.is_file():
         raise FileNotFoundError(f"scenario file is missing / 场景文件缺失: {path}")
     return path
